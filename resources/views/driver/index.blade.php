@@ -14,7 +14,7 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
+    <!-- <nav class="bg-white shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
@@ -28,7 +28,10 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> -->
+    <x-navigation>
+        
+    </x-navigation>
 
     <!-- Status Toggle -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
