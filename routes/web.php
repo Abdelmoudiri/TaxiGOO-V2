@@ -18,7 +18,7 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/drivers',[DriverController::class,'index']);
 
 Route::middleware(['auth','is_driver:driver'])->group(function(){
-    Route::get('/driver',[DriverController::class,'show']);
+    Route::get('/driver',[DriverController::class,'show'])->middleware(['auth','is_driver:driver']);
 });
 
 Route::middleware(['auth','is_passenger:passenger'])->group(function(){

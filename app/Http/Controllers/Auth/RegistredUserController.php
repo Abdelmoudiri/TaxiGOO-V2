@@ -44,6 +44,15 @@ class RegistredUserController extends Controller
 
         ]);
 
+        if($user->account_type == "driver"){
+            $driverAttributes = $request->validate(
+                [
+                    'driver_lisence'=>["required , max(12)"],
+                    'status'=>['required']
+                ]
+                );
+        }
+
         Auth::login($user);
         if($user->account_type === "driver"){
             return redirect('/driver');

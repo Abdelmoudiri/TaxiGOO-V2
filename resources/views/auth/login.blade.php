@@ -14,23 +14,9 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-yellow-500">PIPYalah</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="text-gray-600 hover:text-yellow-500">Accueil</a>
-                    <a href="drivers.html" class="text-gray-600 hover:text-yellow-500">Chauffeurs</a>
-                    <a href="login.html" class="text-yellow-500">Connexion</a>
-                    <a href="register.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
-                        Inscription
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <x-navigation>
+        
+    </x-navigation>
 
     <!-- Login Form -->
     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

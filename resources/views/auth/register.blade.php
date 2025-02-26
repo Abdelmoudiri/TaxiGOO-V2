@@ -14,23 +14,9 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-yellow-500">PIPYalah</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="text-gray-600 hover:text-yellow-500">Accueil</a>
-                    <a href="drivers.html" class="text-gray-600 hover:text-yellow-500">Chauffeurs</a>
-                    <a href="login.html" class="text-gray-600 hover:text-yellow-500">Connexion</a>
-                    <a href="register.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
-                        Inscription
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <x-navigation>
+        
+    </x-navigation>
 
     <!-- Register Form -->
     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -99,6 +85,37 @@
                     </div>
                 </div>
 
+                <div class="hidden" id="lisence">
+
+                    <label for="driver-lisence" class="block mb-2 text-sm font-medium text-gray-700">
+                        Driver Lisence
+                    </label>
+                    <input id="driver-lisence" name="driver-lisence" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Your Lisence">
+                    
+                </div>
+<!-- 
+                <div>
+                  
+                    <div>
+                        <label for="status" class="block text-sm font-medium text-gray-700"">Status</label>
+                        <div class="mt-2 space-y-4">
+                            <div class="flex items-center">
+                                <input id="disponible" name="status" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="disponible" checked>
+                                <label for="disponible" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Disponible
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input id="not_disponible" name="status" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="not disponible">
+                                <label for="not_disponible" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Not Disponible
+                                </label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div> -->
+
                 <div class="flex items-center">
                     <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300 rounded">
                     <label for="terms" class="ml-2 block text-sm text-gray-900">
@@ -120,5 +137,7 @@
             </form>
         </div>
     </div>
+
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
