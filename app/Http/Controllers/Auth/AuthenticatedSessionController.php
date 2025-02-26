@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -14,7 +15,7 @@ class AuthenticatedSessionController extends Controller
         return view("auth.login");
     }
 
-    public function store(Request $request){
+    public function login(Request $request){
 
         $attributes = $request->validate(
             [
@@ -31,8 +32,19 @@ class AuthenticatedSessionController extends Controller
         }
 
         return back()->withErrors([
-            
-            'email'=>'the provided crédentials do not mustch our records.'
-        ])->onlyInput('email');
+            'email'=>'the provided crédentials do not mustch our records.',
+ 
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        // Invalidate the session
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('login');
     }
 }
