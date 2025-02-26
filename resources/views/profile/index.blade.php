@@ -77,10 +77,10 @@
                                     <input type="tel" name="phone" id="phone" value="{{ $user->phone }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
 
-                                @if(Auth::user->account_type == 'driver')
+                                @if(Auth::user()->account_type == 'driver')
                                 <div class="col-span-6">
-                                    <label for="location" class="block text-sm font-medium text-gray-700">Adresse</label>
-                                    <input type="text" name="location" id="location" value="" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <label for="location" class="block text-sm font-medium text-gray-700">Ville</label>
+                                    <input type="text" name="location" id="location" value="{{ $driver->city }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
                                 @endif
                             </div>
