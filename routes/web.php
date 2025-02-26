@@ -15,12 +15,14 @@ Route::middleware(['auth'])->group(function(){
     Route::get('profile',[ProfileController::class,'index']);
 });
 
+Route::get('/drivers',[DriverController::class,'index']);
+
 Route::middleware(['auth','is_driver:driver'])->group(function(){
     Route::get('/driver',[DriverController::class,'show']);
 });
 
 Route::middleware(['auth','is_passenger:passenger'])->group(function(){
-    Route::get('/passenger',[PassengerController::class,'index']);
+    Route::get('/passenger',[PassengerController::class,'show']);
 });
 
 Route::get('/logout',[AuthenticatedSessionController::class,'logout']);

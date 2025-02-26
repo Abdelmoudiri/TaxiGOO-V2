@@ -14,21 +14,6 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <!-- <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-yellow-500">PIPYalah</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="text-gray-600 hover:text-yellow-500">Accueil</a>
-                    <a href="driver-requests.html" class="text-yellow-500">Demandes</a>
-                    <a href="profile.html" class="text-gray-600 hover:text-yellow-500">Profil</a>
-                    <a href="login.html" class="text-gray-600 hover:text-yellow-500">Déconnexion</a>
-                </div>
-            </div>
-        </div>
-    </nav> -->
     <x-navigation>
         
     </x-navigation>

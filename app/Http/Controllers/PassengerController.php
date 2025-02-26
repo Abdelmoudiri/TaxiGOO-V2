@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class PassengerController extends Controller
 {
     
-    public function index(){
-        return view('passenger.index');
+    public function show(){
+        return view('dashboard.passenger');
     }
 }
