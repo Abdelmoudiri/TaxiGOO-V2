@@ -32,9 +32,9 @@
                         </div> -->
                         <form action="/profile/photo" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <label for="updated-photo" class="bg-gray-200 text-gray-700 px-4 py-1 mr-2 rounded-lg hover:bg-gray-300 transition text-sm">Update Photo</label>
+                            <label for="updated-photo" class="bg-gray-200 text-gray-700 px-4 py-1 mr-2 rounded-lg hover:bg-gray-300 transition text-sm">Modifier la Photo</label>
                             <input class="hidden bg-gray-200 text-gray-700 px-4 py-1 mr-2 rounded-lg hover:bg-gray-300 transition text-sm" type="file" name="updated-photo" id="updated-photo">
-                            <button type="submit" class="bg-yellow-500 text-white px-4 py-0.5 rounded-lg hover:bg-yellow-600 transition">update</button>
+                            <button type="submit" class="bg-yellow-500 text-white px-4 py-0.5 rounded-lg hover:bg-yellow-600 transition">Enregistrer</button>
                             @csrf
                         </form>
                     </div>
