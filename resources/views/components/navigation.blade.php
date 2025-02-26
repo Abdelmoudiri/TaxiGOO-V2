@@ -6,7 +6,9 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <a href="/" class="text-yellow-500">Accueil</a>
+                    @role('passenger')
                     <a href="/drivers" class="text-gray-600 hover:text-yellow-500">Chauffeurs</a>
+                    @endrole
                     <a href="/profile" class="text-gray-600 hover:text-yellow-500">profil</a>
                     @auth
                     <a href="/logout" class="text-gray-600 hover:text-yellow-500">logout</a>

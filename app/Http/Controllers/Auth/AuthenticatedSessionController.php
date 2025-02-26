@@ -29,6 +29,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
 
             $role = Auth::user()->account_type;
+            
             return redirect()->intended($role);
         }
 

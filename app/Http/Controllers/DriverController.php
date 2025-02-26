@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class DriverController extends Controller
 {
     public function index(){
-        return view('driver.index');
+        return view('drivers.index');
+    }
+
+    public function show(){
+        return view('dashboards.driver');
     }
 }
