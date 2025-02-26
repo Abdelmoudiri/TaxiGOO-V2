@@ -48,13 +48,15 @@ class RegistredUserController extends Controller
         if($attributes['account_type'] == "driver"){
             $driverAttributes = $request->validate(
                 [
-                    'driver-lisence'=>['required']
+                    'driver-lisence'=>'required',
+                    'city'=>'required'
                 ]
                 );
             Driver::create(
                 [
                     'user_id'=>$user->id,
-                    'driver_lisence'=>$driverAttributes['driver-lisence']
+                    'driver_lisence'=>$driverAttributes['driver-lisence'],
+                    'city'=>$driverAttributes['city']
                 ]
             );
         }
@@ -63,7 +65,7 @@ class RegistredUserController extends Controller
         if($user->account_type === "driver"){
             return redirect('/driver');
         }
-        else if($user->account_type==="passenger"){
+        else if($user->account_type === "passenger"){
             return redirect('/passenger');
         }
         

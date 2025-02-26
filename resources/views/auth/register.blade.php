@@ -87,10 +87,16 @@
 
                 <div class="hidden" id="lisence">
 
-                    <label for="driver-lisence" class="block mb-2 text-sm font-medium text-gray-700">
-                        Driver Lisence
-                    </label>
-                    <input id="driver-lisence" name="driver-lisence" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Your Lisence">
+                    <div>
+                        <label for="driver-lisence" class="block mb-2 text-sm font-medium text-gray-700">
+                            Permis de Conduit
+                        </label>
+                        <input id="driver-lisence" name="driver-lisence" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Permis">
+                    </div>
+                    <div class="mt-2">
+                        <label for="city" class="sr-only">Ville</label>
+                        <input id="city" name="city" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="ville actuel">
+                    </div>
                     
                 </div>
 <!-- 

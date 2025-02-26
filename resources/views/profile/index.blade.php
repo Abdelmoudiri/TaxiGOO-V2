@@ -24,7 +24,7 @@
             <div class="md:col-span-1">
                 <div class="bg-white shadow rounded-lg p-6">
                     <div class="text-center">
-                        <img class="h-32 w-32 rounded-full mx-auto" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Photo de profil">
+                        <img class="h-32 w-32 rounded-full mx-auto" src="{{ asset('storage/'.$user->photo) }}" alt="Photo de profil">
                         <div class="mt-4">
                             <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition text-sm">
                                 Changer la photo
@@ -33,8 +33,8 @@
                     </div>
                     <div class="mt-6 border-t border-gray-200 pt-6">
                         <div class="text-center">
-                            <h3 class="text-lg font-medium text-gray-900">Mohammed Karimi</h3>
-                            <p class="text-sm text-gray-500">Membre depuis Janvier 2025</p>
+                            <h3 class="text-lg font-medium text-gray-900">{{ $user->firstname ." ".$user->lastname }}</h3>
+                            <p class="text-sm text-gray-500">Membre depuis {{ $user->created_at }}</p>
                         </div>
                         <div class="mt-6">
                             <div class="flex justify-between text-sm">
@@ -59,28 +59,30 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="first-name" class="block text-sm font-medium text-gray-700">Prénom</label>
-                                    <input type="text" name="first-name" id="first-name" value="Mohammed" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <input type="text" name="first-name" id="first-name" value="{{ $user->firstname }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="last-name" class="block text-sm font-medium text-gray-700">Nom</label>
-                                    <input type="text" name="last-name" id="last-name" value="Karimi" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <input type="text" name="last-name" id="last-name" value="{{ $user->lastname }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6">
                                     <label for="email" class="block text-sm font-medium text-gray-700">Adresse email</label>
-                                    <input type="email" name="email" id="email" value="mohammed.karimi@email.com" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <input type="email" name="email" id="email" value="{{ $user->email }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6">
                                     <label for="phone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
-                                    <input type="tel" name="phone" id="phone" value="+212 6XX-XXXXXX" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <input type="tel" name="phone" id="phone" value="{{ $user->phone }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
 
+                                @if(Auth::user->account_type == 'driver')
                                 <div class="col-span-6">
-                                    <label for="address" class="block text-sm font-medium text-gray-700">Adresse</label>
-                                    <input type="text" name="address" id="address" value="123 Rue Mohammed V, Rabat" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <label for="location" class="block text-sm font-medium text-gray-700">Adresse</label>
+                                    <input type="text" name="location" id="location" value="" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
+                                @endif
                             </div>
                             <div class="mt-6">
                                 <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">

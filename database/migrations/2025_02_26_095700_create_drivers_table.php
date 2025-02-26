@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(App\Models\User::class);
             $table->string('driver_lisence');
+            $table->string('city');
             $table->enum('status',['disponible','not disponible'])->default('disponible');
             $table->timestamps();
         });
