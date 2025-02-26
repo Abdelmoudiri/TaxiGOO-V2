@@ -50,4 +50,18 @@ class ProfileController extends Controller
         return redirect('/profile');
     }
 
+    public function updatePhoto(Request $request){
+        $path['photo'] = [];
+        if($request->hasfile('updated-photo')){
+            $path['photo'] = $request->file('updated-photo')->store('photos','public');
+        }
+
+        if($path['photo']){
+            $user = User::find(Auth::user()->id);
+            $user->update($path);
+        }
+
+        return redirect('/profile');
+    }
+
 }

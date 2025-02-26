@@ -14,6 +14,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function(){
     Route::get('/profile',[ProfileController::class,'index']);
     Route::post('/profile',[ProfileController::class,'update']);
+    Route::post('/profile/photo',[ProfileController::class,'updatePhoto']);
 });
 
 Route::get('/drivers',[DriverController::class,'index']);

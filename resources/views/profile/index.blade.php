@@ -30,10 +30,12 @@
                                 Changer la photo
                             </button>
                         </div> -->
-                        <form action="/profile/photo" method="post" enctype="multipart/form-data">
+                        <form action="/profile/photo" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <label for="updated-photo" class="bg-gray-200 text-gray-700 px-4 py-1 mr-2 rounded-lg hover:bg-gray-300 transition text-sm">Update Photo</label>
                             <input class="hidden bg-gray-200 text-gray-700 px-4 py-1 mr-2 rounded-lg hover:bg-gray-300 transition text-sm" type="file" name="updated-photo" id="updated-photo">
                             <button type="submit" class="bg-yellow-500 text-white px-4 py-0.5 rounded-lg hover:bg-yellow-600 transition">update</button>
+                            @csrf
                         </form>
                     </div>
                     <div class="mt-6 border-t border-gray-200 pt-6">
