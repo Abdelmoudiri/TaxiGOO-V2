@@ -8,6 +8,6 @@ class PassengerController extends Controller
 {
     
     public function show(){
-        return view('dashboard.passenger');
+        return view('dashboards.passenger');
     }
 }

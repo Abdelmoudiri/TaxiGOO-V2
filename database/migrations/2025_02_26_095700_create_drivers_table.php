@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(App\Models\User::class);
             $table->string('driver_lisence');
-            $table->enum('status',['disponible','not disponible']);
+            $table->enum('status',['disponible','not disponible'])->default('disponible');
             $table->timestamps();
         });
     }

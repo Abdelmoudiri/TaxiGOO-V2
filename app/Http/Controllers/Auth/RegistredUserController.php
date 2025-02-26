@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Driver;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class RegistredUserController extends Controller
                 'account_type'=>'required'
 
             ]);
-
+            $path = null;
         if($request->hasFile('photo')){
             $path = $request->file('photo')->store('photos','public');
         }
@@ -44,13 +45,18 @@ class RegistredUserController extends Controller
 
         ]);
 
-        if($user->account_type == "driver"){
+        if($attributes['account_type'] == "driver"){
             $driverAttributes = $request->validate(
                 [
-                    'driver_lisence'=>["required , max(12)"],
-                    'status'=>['required']
+                    'driver-lisence'=>['required']
                 ]
                 );
+            Driver::create(
+                [
+                    'user_id'=>$user->id,
+                    'driver_lisence'=>$driverAttributes['driver-lisence']
+                ]
+            );
         }
 
         Auth::login($user);
