@@ -25,11 +25,16 @@
                 <div class="bg-white shadow rounded-lg p-6">
                     <div class="text-center">
                         <img class="h-32 w-32 rounded-full mx-auto" src="{{ asset('storage/'.$user->photo) }}" alt="Photo de profil">
-                        <div class="mt-4">
+                        <!-- <div class="mt-4">
                             <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition text-sm">
                                 Changer la photo
                             </button>
-                        </div>
+                        </div> -->
+                        <form action="/profile/photo" method="post" enctype="multipart/form-data">
+                            <label for="updated-photo" class="bg-gray-200 text-gray-700 px-4 py-1 mr-2 rounded-lg hover:bg-gray-300 transition text-sm">Update Photo</label>
+                            <input class="hidden bg-gray-200 text-gray-700 px-4 py-1 mr-2 rounded-lg hover:bg-gray-300 transition text-sm" type="file" name="updated-photo" id="updated-photo">
+                            <button type="submit" class="bg-yellow-500 text-white px-4 py-0.5 rounded-lg hover:bg-yellow-600 transition">update</button>
+                        </form>
                     </div>
                     <div class="mt-6 border-t border-gray-200 pt-6">
                         <div class="text-center">
@@ -55,16 +60,17 @@
                 <div class="bg-white shadow rounded-lg">
                     <div class="px-4 py-5 sm:p-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-6">Informations personnelles</h3>
-                        <form>
+                        <form method="POST" action="/profile">
+                            @csrf
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="first-name" class="block text-sm font-medium text-gray-700">Prénom</label>
-                                    <input type="text" name="first-name" id="first-name" value="{{ $user->firstname }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <label for="firstname" class="block text-sm font-medium text-gray-700">Prénom</label>
+                                    <input type="text" name="firstname" id="firstname" value="{{ $user->firstname }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="last-name" class="block text-sm font-medium text-gray-700">Nom</label>
-                                    <input type="text" name="last-name" id="last-name" value="{{ $user->lastname }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <label for="lastname" class="block text-sm font-medium text-gray-700">Nom</label>
+                                    <input type="text" name="lastname" id="lastname" value="{{ $user->lastname }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6">
@@ -79,8 +85,8 @@
 
                                 @if(Auth::user()->account_type == 'driver')
                                 <div class="col-span-6">
-                                    <label for="location" class="block text-sm font-medium text-gray-700">Ville</label>
-                                    <input type="text" name="location" id="location" value="{{ $driver->city }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <label for="city" class="block text-sm font-medium text-gray-700">Ville</label>
+                                    <input type="text" name="city" id="city" value="{{ $driver->city }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
                                 @endif
                             </div>
@@ -89,6 +95,7 @@
                                     Enregistrer les modifications
                                 </button>
                             </div>
+                            @csrf
                         </form>
                     </div>
                 </div>

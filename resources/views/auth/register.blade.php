@@ -34,7 +34,7 @@
             </div>
             <form class="mt-8 space-y-6" action="/register" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="rounded-md shadow-sm space-y-2 ">
+                <div class="rounded-md shadow-sm space-y-2 "> 
                     <div class="flex gap-2">
                         <div class="w-full">
                             <label for="firstname" class="sr-only">Fist Name</label>
