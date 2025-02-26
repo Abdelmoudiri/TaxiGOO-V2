@@ -12,7 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'is_driver' => App\Http\Middleware\DriverMiddleware::class
+            'is_driver' => App\Http\Middleware\DriverMiddleware::class,
+            'is_passenger'=>App\Http\Middleware\PassengerMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

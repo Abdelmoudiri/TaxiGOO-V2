@@ -14,6 +14,10 @@ Route::middleware(['auth','is_driver:driver'])->group(function(){
     Route::get('/driver',[DriverController::class,'index']);
 });
 
+Route::middleware(['auth','is_passenger:passenger'])->group(function(){
+    Route::get('/passenger',[PassengerController::class,'index']);
+});
+
 Route::get('/logout',[AuthenticatedSessionController::class,'logout']);
 
 Route::middleware(['guest'])->group(function(){
