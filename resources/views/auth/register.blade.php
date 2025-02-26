@@ -46,11 +46,18 @@
                     </a>
                 </p>
             </div>
-            <form class="mt-8 space-y-6" action="#" method="POST">
-                <div class="rounded-md shadow-sm -space-y-px">
-                    <div>
-                        <label for="name" class="sr-only">Nom complet</label>
-                        <input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Nom complet">
+            <form class="mt-8 space-y-6" action="/register" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="rounded-md shadow-sm space-y-2 ">
+                    <div class="flex gap-2">
+                        <div class="w-full">
+                            <label for="firstname" class="sr-only">Fist Name</label>
+                            <input id="firstname" name="firstname" type="text" required class="appearance-none w-full rounded-none relative block flex-1 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="First Name">
+                        </div>
+                        <div class="w-full">
+                            <label for="lastname" class="sr-only">Last Name</label>
+                            <input id="lastname" name="lastname" type="text" required class="appearance-none w-full rounded-none relative block flex-1 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Last Name">
+                        </div>
                     </div>
                     <div>
                         <label for="email" class="sr-only">Adresse email</label>
@@ -58,7 +65,11 @@
                     </div>
                     <div>
                         <label for="phone" class="sr-only">Numéro de téléphone</label>
-                        <input id="phone" name="phone" type="tel" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Numéro de téléphone">
+                        <input id="phone" name="phone" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Numéro de téléphone">
+                    </div>
+                    <div>
+                        <label for="photo" class="sr-only">Photo de Profile</label>
+                        <input id="photo" name="photo" type="file" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm">
                     </div>
                     <div>
                         <label for="password" class="sr-only">Mot de passe</label>
@@ -66,7 +77,7 @@
                     </div>
                     <div>
                         <label for="password-confirm" class="sr-only">Confirmer le mot de passe</label>
-                        <input id="password-confirm" name="password-confirm" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Confirmer le mot de passe">
+                        <input id="password-confirm" name="password_confirmation" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="Confirmer le mot de passe">
                     </div>
                 </div>
 
@@ -74,13 +85,13 @@
                     <label class="block text-sm font-medium text-gray-700">Type de compte</label>
                     <div class="mt-2 space-y-4">
                         <div class="flex items-center">
-                            <input id="account-type-passenger" name="account-type" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="passenger" checked>
+                            <input id="account-type-passenger" name="account_type" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="passenger" checked>
                             <label for="account-type-passenger" class="ml-3 block text-sm font-medium text-gray-700">
                                 Passager
                             </label>
                         </div>
                         <div class="flex items-center">
-                            <input id="account-type-driver" name="account-type" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="driver">
+                            <input id="account-type-driver" name="account_type" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="driver">
                             <label for="account-type-driver" class="ml-3 block text-sm font-medium text-gray-700">
                                 Chauffeur
                             </label>
@@ -105,6 +116,7 @@
                         Créer un compte
                     </button>
                 </div>
+                @csrf
             </form>
         </div>
     </div>
