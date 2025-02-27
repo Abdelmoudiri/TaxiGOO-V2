@@ -13,30 +13,28 @@ class ReservationController extends Controller
 {
     
     public function reservations(){
-        $condition = 'user_id';
+        $condition = 'reservations.user_id';
         $redirection = '/passenger';
         if(Auth::user()->account_type == "driver"){
-            $condition = 'driver_id';
+            $condition = 'drivers.user_id';
             $redirection = '/driver';
         }
 
         $reservations = Reservation::with('driver')
         ->join('users','reservations.user_id','=','users.id')
         ->join('drivers','reservations.driver_id','=','drivers.id')
-        ->where('reservations.'.$condition,'=',Auth::user()->id)
+        ->where($condition,'=',Auth::user()->id)
         ->get();
 
         $drivers = DB::table('drivers')
         ->join('users','drivers.user_id','=','users.id')
+        ->join('reservations','drivers.id','=','reservations.driver_id')
         ->get();
 
-        // $reservations['drivers'] = $drivers;
-        // dd($reservations);
-
-        return view('dashboards'.$redirection,['reservations'=>$reservations]);
+        return view('dashboards'.$redirection,['reservations'=>$reservations,'drivers'=>$drivers]);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'date'=>'required',
@@ -49,8 +47,15 @@ class ReservationController extends Controller
 
         Reservation::create($validated);
 
-        return redirect('/drivers');
+        return response()->json(['success' => 'votre réservation et créer avec succés']);
     }
 
+    public function update(Request $request,$id){
+
+        $reservation = Reservation::find($id);
+        $reservation->update(['reservaton_status'=>'canceled']);
+        return response()->json(['message' => 'Reservation canceled successfully']);
+
+    }
 
 }

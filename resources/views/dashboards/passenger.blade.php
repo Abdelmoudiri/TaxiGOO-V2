@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <title>Mes Réservations - PIPYalah</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -38,6 +43,7 @@
         <div class="space-y-6">
             <!-- Reservation Card -->
              @foreach($reservations as $reservation)
+             
             <div class="bg-white shadow rounded-lg p-6">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-4">
@@ -51,24 +57,31 @@
                             <p class="text-sm text-gray-500">{{ $reservation->date }}</p>
                         </div>
                     </div>
-                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ $reservation->status }}</span>
+                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ $reservation->reservaton_status }}</span>
                 </div>
                 <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
                     <div>
+                        
                         <dt class="text-sm font-medium text-gray-500">Chauffeur</dt>
-                        <dd class="mt-1 text-sm text-gray-900"></dd>
+                        @foreach($drivers as $driver)
+                        <dd class="mt-1 text-sm text-gray-900">
+                            @if($reservation->driver_id == $driver->id)
+                            {{ $driver->firstname .' '.$driver->lastname }} 
+                            @endif
+                        </dd>
+                        @endforeach
                     </div>
                     <div>
-                        <dt class="text-sm font-medium text-gray-500">Véhicule</dt>
+                        <!-- <dt class="text-sm font-medium text-gray-500">Véhicule</dt>
                         <dd class="mt-1 text-sm text-gray-900">Mercedes - 12345-A-5</dd>
                     </div>
                     <div>
                         <dt class="text-sm font-medium text-gray-500">Prix</dt>
-                        <dd class="mt-1 text-sm text-gray-900">120 MAD</dd>
+                        <dd class="mt-1 text-sm text-gray-900">120 MAD</dd> -->
                     </div>
                 </div>
                 <div class="mt-6 flex space-x-4">
-                    <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                    <button onclick="cancelReservation('{{$reservation->id}}')" class="cancel-reservation bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
                         Annuler
                     </button>
                     <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
@@ -80,5 +93,9 @@
 
         </div>
     </div>
+
+
+    <script src="{{ asset('js/script.js') }}"></script>
+    
 </body>
 </html>

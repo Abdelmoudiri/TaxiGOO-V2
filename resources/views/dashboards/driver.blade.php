@@ -43,11 +43,11 @@
                         <div class="ml-5 w-0 flex-1">
                             <dl>
                                 <dt class="text-sm font-medium text-gray-500 truncate">
-                                    Courses aujourd'hui
+                                    Courses 
                                 </dt>
                                 <dd class="flex items-baseline">
                                     <div class="text-2xl font-semibold text-gray-900">
-                                        5
+                                        {{ $reservations->count()}}
                                     </div>
                                 </dd>
                             </dl>
@@ -111,15 +111,16 @@
                 <h2 class="text-lg font-medium text-gray-900">Demandes de réservation</h2>
             </div>
             <div class="border-t border-gray-200">
-                <!-- Request 1 -->
+                <!-- Request -->
+                @foreach($reservations as $reservation)
                 <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
-                            <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Passager">
+                            <img class="h-12 w-12 rounded-full" src="{{ asset('storage/'.$reservation->photo)}}" alt="Passager">
                             <div>
-                                <h3 class="text-lg font-medium text-gray-900">Sarah Amrani</h3>
-                                <p class="text-sm text-gray-500">Casablanca → Rabat</p>
-                                <p class="text-sm text-gray-500">Aujourd'hui à 15:30 • 3 passagers</p>
+                                <h3 class="text-lg font-medium text-gray-900">{{ $reservation->firstname .' '.$reservation->lastname }}</h3>
+                                <p class="text-sm text-gray-500">{{ $reservation->location }} → {{ $reservation->destination }}</p>
+                                <p class="text-sm text-gray-500">{{ $reservation->date }} • 3 passagers</p>
                             </div>
                         </div>
                         <div class="flex space-x-4">
@@ -132,28 +133,8 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
 
-                <!-- Request 2 -->
-                <div class="px-4 py-5 sm:px-6">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Passager">
-                            <div>
-                                <h3 class="text-lg font-medium text-gray-900">Mohammed Karimi</h3>
-                                <p class="text-sm text-gray-500">Rabat → Kénitra</p>
-                                <p class="text-sm text-gray-500">Demain à 09:00 • 2 passagers</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-4">
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                                Refuser
-                            </button>
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-                                Accepter
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

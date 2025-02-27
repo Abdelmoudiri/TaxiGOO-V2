@@ -68,7 +68,7 @@
                     Prendre votre réservation
                 </h2>
             </div>
-            <form class="mt-8 space-y-6" action="/reserve" method="POST">
+            <form id="reservation-form" class="mt-8 space-y-6" action="/reserve" method="POST">
                 @csrf
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
