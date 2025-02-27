@@ -62,12 +62,9 @@ class RegistredUserController extends Controller
         }
 
         Auth::login($user);
-        if($user->account_type === "driver"){
-            return redirect('/driver');
-        }
-        else if($user->account_type === "passenger"){
-            return redirect('/passenger');
-        }
+            
+        return redirect('/reservations');
+       
         
     }
 }

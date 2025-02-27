@@ -27,10 +27,8 @@ class AuthenticatedSessionController extends Controller
         if(Auth::attempt($attributes)){
 
             $request->session()->regenerate();
-
-            $role = Auth::user()->account_type;
             
-            return redirect()->intended($role);
+            return redirect()->intended('reservations');
         }
 
         return back()->withErrors([

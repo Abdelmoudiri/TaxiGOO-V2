@@ -13,10 +13,13 @@ class ProfileController extends Controller
     public function index(){
         $user = User::find(Auth::user()->id);
         
+        $driver = null;
+
         if($user->account_type == "driver"){
             $driver = Driver::where('user_id' ,'=', $user->id)->get();
         }
-        return view('profile.index',['user'=>$user,'driver'=>$driver[0]]);
+        
+        return view('profile.index',['user'=>$user,'driver'=>$driver]);
     }
 
     public function update(Request $request){
@@ -38,14 +41,16 @@ class ProfileController extends Controller
             ;
 
         $user = User::find(Auth::user()->id);
-
+        $driver = null;
         if(Auth::user()->account_type == 'driver'){
             $driverAttributes['city'] = $request->validate(['city'=>'required']);
             $driver = Driver::where('user_id' ,'=', $user->id)->get();
         }
 
         $user->update($userUpdate);
-        $driver[0]->update($driverAttributes['city']);
+        if($driver){
+            $driver->update($driverAttributes['city']);
+        }
 
         return redirect('/profile');
     }

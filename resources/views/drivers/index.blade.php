@@ -28,7 +28,7 @@
             <!-- Driver Card -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="relative">
-                    <img class="w-48 h-48 mx-auto object-fit" src="{{ asset('storage/'.$driver->photo)}}" alt="Chauffeur">
+                    <img class="w-48 h-48 mx-auto mt-2 object-fit" src="{{ asset('storage/'.$driver->photo)}}" alt="Chauffeur">
                     <div class="absolute top-4 right-4">
                         <span class="text-black px-3 py-1 rounded-full text-sm">{{ $driver->status }}</span>
                     </div>
@@ -50,7 +50,7 @@
                             <span class="ml-2 text-gray-600">4.8 (156 avis)</span>
                         </div>
                     </div>
-                    <button class="mt-6 w-full bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
+                    <button onclick="reserve('{{ $driver->id }}')"  class="reserver mt-6 w-full bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
                         Réserver maintenant
                     </button>
                 </div>
@@ -59,5 +59,62 @@
         </div>
         
     </div>
+
+
+<div id="reservation-modal" class="hidden min-h-content bg-white shadow-md rounded-md items-center justify-center py-10 px-4 sm:px-6 lg:px-8 fixed top-20 left-[50%] translate-x-[-50%] z-9">
+        <div class="max-w-md w-full space-y-8">
+            <div>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                    Prendre votre réservation
+                </h2>
+            </div>
+            <form class="mt-8 space-y-6" action="/reserve" method="POST">
+                @csrf
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="date" class="sr-only">Date</label>
+                        <input id="date" name="date" type="date" required :value="old('email')" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm">
+                    </div>
+
+                    <div>
+                        <label for="location" class="sr-only">Location</label>
+                        <input id="location" name="location" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="lieu de prise en charge">
+                    </div>
+
+                    <div>
+                        <label for="destination" class="sr-only">Destination</label>
+                        <input id="destination" name="destination" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm" placeholder="ville destination">
+                    </div>
+
+                    <input type="hidden" name="driverid" id="driverid">
+
+                </div>
+
+                <div class="flex gap-5">
+                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <svg class="h-5 w-5 text-yellow-400 group-hover:text-yellow-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        enregistrer
+                    </button>
+                    <button type="button" id="annuler" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <svg class="h-5 w-5 text-red-400 group-hover:text-red-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        annuler
+                    </button>
+                </div>
+                @csrf
+            </form>
+        </div>
+</div>
+
+
+    <script src="{{ asset('js/script.js') }}"></script>
+
 </body>
 </html>

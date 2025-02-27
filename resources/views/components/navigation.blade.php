@@ -10,10 +10,10 @@
                     @auth
                     @if(Auth::user()->account_type == 'passenger')
                     <a href="/drivers" class="text-gray-600 hover:text-yellow-500">Chauffeurs</a>
-                    <a href="/passenger" class="hover:text-yellow-500">Mes Réservations</a>
+                    <a href="/reservations" class="hover:text-yellow-500">Mes Réservations</a>
                     @endif
                     @if(Auth::user()->account_type == 'driver')
-                    <a href="/driver" class="text-gray-600 hover:text-yellow-500">Demandes</a>
+                    <a href="/reservations" class="text-gray-600 hover:text-yellow-500">Demandes</a>
                     @endif
 
                     <a href="/profile" class="text-gray-600 hover:text-yellow-500">profil</a>

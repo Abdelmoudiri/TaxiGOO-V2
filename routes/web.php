@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/profile',[ProfileController::class,'index']);
     Route::post('/profile',[ProfileController::class,'update']);
     Route::post('/profile/photo',[ProfileController::class,'updatePhoto']);
+    Route::get('/reservations',[ReservationController::class,'reservations']);
 });
 
 Route::get('/drivers',[DriverController::class,'index']);
@@ -25,6 +27,7 @@ Route::middleware(['auth','is_driver:driver'])->group(function(){
 
 Route::middleware(['auth','is_passenger:passenger'])->group(function(){
     Route::get('/passenger',[PassengerController::class,'show']);
+    Route::post('/reserve',[ReservationController::class,'create']);
 });
 
 Route::get('/logout',[AuthenticatedSessionController::class,'logout']);

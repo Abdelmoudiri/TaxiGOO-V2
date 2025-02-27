@@ -50,8 +50,7 @@ class User extends Authenticatable
         ];
     }
 
-
-    public function Driver(){
-        return $this->is(Driver::class);
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
     }
 }

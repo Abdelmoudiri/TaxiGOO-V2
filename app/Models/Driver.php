@@ -8,7 +8,7 @@ class Driver extends Model
 {
     protected $guarded = [];
 
-    public function user(){
-        return $this->is(User::class);
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
     }
 }
