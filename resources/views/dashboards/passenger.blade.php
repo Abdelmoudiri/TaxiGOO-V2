@@ -27,7 +27,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-2xl font-bold text-gray-900 mb-8">Mes Réservations</h1>
         @if(\Session::has('success'))
-        <div class="bg-green-300 text-green-600 px-2 py-1">{!! \Session::get('success') !!}</div>
+        <div class="bg-yellow-300 text-yellow-600 px-2 py-1">{!! \Session::get('success') !!}</div>
         @endif
         <!-- Tabs -->
         <div class="border-b border-gray-200 mb-8">

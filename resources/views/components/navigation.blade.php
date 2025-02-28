@@ -5,19 +5,21 @@
                     <div class="text-2xl font-bold text-yellow-500">PIPYalah</div>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <a href="/" class="hover:text-yellow-500">Accueil</a>
+                    <a href="/" class="text-gray-600 hover:text-yellow-500">Accueil</a>
             
                     @auth
                     @if(Auth::user()->account_type == 'passenger')
                     <a href="/drivers" class="text-gray-600 hover:text-yellow-500">Chauffeurs</a>
-                    <a href="/reservations" class="hover:text-yellow-500">Mes Réservations</a>
+                    <a href="/reservations" class="text-gray-600 hover:text-yellow-500">Mes Réservations</a>
                     @endif
                     @if(Auth::user()->account_type == 'driver')
                     <a href="/reservations" class="text-gray-600 hover:text-yellow-500">Demandes</a>
                     @endif
 
                     <a href="/profile" class="text-gray-600 hover:text-yellow-500">profil</a>
-                    <a href="/logout" class="text-gray-600 hover:text-yellow-500">logout</a>
+                    <a href="/logout" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
+                            logout
+                    </a>
                     @endauth
                     @guest
                         <a href="/drivers" class="text-gray-600 hover:text-yellow-500">Chauffeurs</a>

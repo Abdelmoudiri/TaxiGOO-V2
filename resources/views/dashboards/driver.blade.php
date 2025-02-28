@@ -24,9 +24,17 @@
             <h1 class="text-2xl font-bold text-gray-900">Tableau de bord</h1>
             <div class="flex items-center space-x-4">
                 <span class="text-sm text-gray-600">Status:</span>
-                <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-                    Disponible
-                </button>
+                @foreach($drivers as $driver)
+                @if($driver->user_id == Auth::user()->id)
+
+                <a href="driver/updateStatus/{{$driver->status}}" class="bg-green-500 text-white capitalize px-4 py-2 rounded-lg hover:bg-green-600 transition">  
+                    {{ $driver->status}}
+                </a>
+
+                <p>{{ $driver->user_id }}</p>
+
+                @endif
+                @endforeach
             </div>
         </div>
 
@@ -105,8 +113,16 @@
             </div>
         </div>
 
+            @if(\Session::has('accepted'))
+            <div class="bg-green-300 text-green-600 px-2 py-1">{!! \Session::get('accepted') !!}</div>
+            @endif
+            @if(\Session::has('refused'))
+            <div class="bg-orange-300 text-orange-600 px-2 py-1">{!! \Session::get('refused') !!}</div>
+            @endif
         <!-- Requests List -->
+
         <div class="bg-white shadow rounded-lg">
+            
             <div class="px-4 py-5 sm:px-6">
                 <h2 class="text-lg font-medium text-gray-900">Demandes de réservation</h2>
             </div>
@@ -123,14 +139,16 @@
                                 <p class="text-sm text-gray-500">{{ $reservation->date }} • 3 passagers</p>
                             </div>
                         </div>
+                        @if($reservation->reservaton_status == 'pending')
                         <div class="flex space-x-4">
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                            <a href="/reservations/refuse/{{$reservation->id}}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
                                 Refuser
-                            </button>
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
+                            </a>
+                            <a href="/reservations/accept/{{$reservation->id}}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
                                 Accepter
-                            </button>
+                            </a>
                         </div>
+                        @endif
                     </div>
                 </div>
                 @endforeach
@@ -138,5 +156,7 @@
             </div>
         </div>
     </div>
+
+    
 </body>
 </html>

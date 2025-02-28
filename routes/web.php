@@ -17,18 +17,22 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/profile',[ProfileController::class,'update']);
     Route::post('/profile/photo',[ProfileController::class,'updatePhoto']);
     Route::get('/reservations',[ReservationController::class,'reservations']);
-    Route::get('/reservations/{id}',[ReservationController::class,'cancel']);
+    
 });
 
 Route::get('/drivers',[DriverController::class,'index']);
 
 Route::middleware(['auth','is_driver:driver'])->group(function(){
-    Route::get('/driver',[DriverController::class,'show'])->middleware(['auth','is_driver:driver']);
+    Route::get('/driver',[DriverController::class,'show']);
+    Route::get('/driver/updateStatus/{status}',[DriverController::class,'updateStatus']);
+    Route::get('/reservations/accept/{id}',[ReservationController::class,'accept']);
+    Route::get('/reservations/refuse/{id}',[ReservationController::class,'refuse']);
 });
 
 Route::middleware(['auth','is_passenger:passenger'])->group(function(){
     Route::get('/passenger',[PassengerController::class,'show']);
     Route::post('/reserve',[ReservationController::class,'store']);
+    Route::get('/reservations/{id}',[ReservationController::class,'cancel']);
 });
 
 Route::get('/logout',[AuthenticatedSessionController::class,'logout']);

@@ -63,7 +63,14 @@ class ReservationController extends Controller
 
         $reservation = Reservation::find($id);
         $reservation->update(['reservaton_status'=>'accepted']);
-        return Redirect::back()->with('success','reservation canceled succefully !');
+        return Redirect::back()->with('accepted','reservation accepted succefully !');
+
+    }
+    public function refuse($id){
+
+        $reservation = Reservation::find($id);
+        $reservation->update(['reservaton_status'=>'refused']);
+        return Redirect::back()->with('refused','reservation refused succefully !');
 
     }
 
