@@ -16,7 +16,7 @@ class ProfileController extends Controller
         $driver = null;
 
         if($user->account_type == "driver"){
-            $driver = Driver::where('user_id' ,'=', $user->id)->get();
+            $driver = Driver::find(Auth::user()->id);
         }
         
         return view('profile.index',['user'=>$user,'driver'=>$driver]);

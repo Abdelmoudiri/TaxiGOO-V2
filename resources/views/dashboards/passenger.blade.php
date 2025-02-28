@@ -26,11 +26,13 @@
     <!-- Reservations List -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-2xl font-bold text-gray-900 mb-8">Mes Réservations</h1>
-
+        @if(\Session::has('success'))
+        <div class="bg-green-300 text-green-600 px-2 py-1">{!! \Session::get('success') !!}</div>
+        @endif
         <!-- Tabs -->
         <div class="border-b border-gray-200 mb-8">
             <nav class="-mb-px flex space-x-8">
-                <a href="#" class="border-yellow-500 text-yellow-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                <a href="#" class="border-yellow-500 text-yellow-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-id="encour">
                     En cours
                 </a>
                 <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
@@ -40,7 +42,7 @@
         </div>
 
         <!-- Active Reservations -->
-        <div class="space-y-6">
+        <div class="space-y-6" id="encour">
             <!-- Reservation Card -->
              @foreach($reservations as $reservation)
              
@@ -53,7 +55,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-lg font-medium text-gray-900">{{ $reservation->location }} → {{ $reservation->destination }}</h3>
+                            <h3 class="text-lg font-medium text-gray-900">{{ $reservation->id.'/'.$reservation->location }} → {{ $reservation->destination }}</h3>
                             <p class="text-sm text-gray-500">{{ $reservation->date }}</p>
                         </div>
                     </div>
@@ -63,13 +65,13 @@
                     <div>
                         
                         <dt class="text-sm font-medium text-gray-500">Chauffeur</dt>
-                        @foreach($drivers as $driver)
+                        <!-- @foreach($drivers as $driver) -->
                         <dd class="mt-1 text-sm text-gray-900">
-                            @if($reservation->driver_id == $driver->id)
-                            {{ $driver->firstname .' '.$driver->lastname }} 
-                            @endif
+                            <!-- @if($reservation->driver_id == $driver->id) -->
+                            {{ $reservation->driver_id }} 
+                            <!-- @endif -->
                         </dd>
-                        @endforeach
+                        <!-- @endforeach -->
                     </div>
                     <div>
                         <!-- <dt class="text-sm font-medium text-gray-500">Véhicule</dt>
@@ -81,12 +83,20 @@
                     </div>
                 </div>
                 <div class="mt-6 flex space-x-4">
-                    <button onclick="cancelReservation('{{$reservation->id}}')" class="cancel-reservation bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                    <!-- <button onclick="cancelReservation('{{$reservation->id}}')" class="cancel-reservation bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
                         Annuler
                     </button>
                     <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
                         Contacter le chauffeur
+                    </button> -->
+                    @if($reservation->reservaton_status != "canceled")
+                    <a href="reservations/{{ $reservation->id }}" class="cancel-reservation bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                        Annuler
+                    </a>
+                    <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
+                        Contacter le chauffeur
                     </button>
+                    @endif
                 </div>
             </div>
             @endforeach
@@ -95,7 +105,7 @@
     </div>
 
 
-    <script src="{{ asset('js/script.js') }}"></script>
+    <!-- <script src="{{ asset('js/script.js') }}"></script> -->
     
 </body>
 </html>

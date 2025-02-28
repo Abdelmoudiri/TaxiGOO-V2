@@ -67,6 +67,7 @@ function reserve(driverid){
 
 function cancelReservation(reservationId){
 
+    console.log(reservationId)
     $.ajax({
         type:'PUT',
         url: '/reservations'+reservationId,

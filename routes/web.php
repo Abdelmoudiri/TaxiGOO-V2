@@ -17,7 +17,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/profile',[ProfileController::class,'update']);
     Route::post('/profile/photo',[ProfileController::class,'updatePhoto']);
     Route::get('/reservations',[ReservationController::class,'reservations']);
-    Route::post('/reservations/{id}',[ReservationController::class,'update']);
+    Route::get('/reservations/{id}',[ReservationController::class,'cancel']);
 });
 
 Route::get('/drivers',[DriverController::class,'index']);

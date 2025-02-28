@@ -8,28 +8,30 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ReservationController extends Controller
 {
     
     public function reservations(){
+
         $condition = 'reservations.user_id';
         $redirection = '/passenger';
         if(Auth::user()->account_type == "driver"){
-            $condition = 'drivers.user_id';
+            $condition = 'reservations.driver_id';
             $redirection = '/driver';
         }
 
-        $reservations = Reservation::with('driver')
-        ->join('users','reservations.user_id','=','users.id')
-        ->join('drivers','reservations.driver_id','=','drivers.id')
+        $reservations = Reservation::with('user','driver')
+        // ->join('users','reservations.user_id','=','users.id')
+        // ->join('drivers','reservations.driver_id','=','reservations.driver_id')
         ->where($condition,'=',Auth::user()->id)
         ->get();
 
         $drivers = DB::table('drivers')
         ->join('users','drivers.user_id','=','users.id')
-        ->join('reservations','drivers.id','=','reservations.driver_id')
         ->get();
+        // dd($drivers);
 
         return view('dashboards'.$redirection,['reservations'=>$reservations,'drivers'=>$drivers]);
     }
@@ -50,11 +52,18 @@ class ReservationController extends Controller
         return response()->json(['success' => 'votre réservation et créer avec succés']);
     }
 
-    public function update(Request $request,$id){
+    public function cancel($id){
 
         $reservation = Reservation::find($id);
         $reservation->update(['reservaton_status'=>'canceled']);
-        return response()->json(['message' => 'Reservation canceled successfully']);
+        return Redirect::back()->with('success','reservation canceled succefully !');
+
+    }
+    public function accept($id){
+
+        $reservation = Reservation::find($id);
+        $reservation->update(['reservaton_status'=>'accepted']);
+        return Redirect::back()->with('success','reservation canceled succefully !');
 
     }
 
