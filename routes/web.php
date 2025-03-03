@@ -7,6 +7,7 @@ use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return view('index');
@@ -14,6 +15,16 @@ Route::get('/', function () {
 Route::get('/admin',function()
 {
     return view('dashboards.admin');
+});
+
+// google
+Route::get('/auth/google/redirect',function(Request $request)
+{
+    return Socialite::driver('google')->redirect();
+});
+Route::get('/auth/google/callback',function(Request $request)
+{
+   dd(Socialite::driver('google')->user());
 });
 
 Route::middleware(['auth'])->group(function(){
