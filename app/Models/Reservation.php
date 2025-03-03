@@ -8,6 +8,7 @@ class Reservation extends Model
 {
     protected $guarded = [];
 
+    // public function reservations()
 
     public function driver(){
         return $this->belongsTo(Driver::class);
