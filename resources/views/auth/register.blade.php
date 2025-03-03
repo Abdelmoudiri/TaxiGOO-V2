@@ -99,28 +99,6 @@
                     </div>
                     
                 </div>
-<!-- 
-                <div>
-                  
-                    <div>
-                        <label for="status" class="block text-sm font-medium text-gray-700"">Status</label>
-                        <div class="mt-2 space-y-4">
-                            <div class="flex items-center">
-                                <input id="disponible" name="status" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="disponible" checked>
-                                <label for="disponible" class="ml-3 block text-sm font-medium text-gray-700">
-                                    Disponible
-                                </label>
-                            </div>
-                            <div class="flex items-center">
-                                <input id="not_disponible" name="status" type="radio" class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300" value="not disponible">
-                                <label for="not_disponible" class="ml-3 block text-sm font-medium text-gray-700">
-                                    Not Disponible
-                                </label>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div> -->
 
                 <div class="flex items-center">
                     <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300 rounded">

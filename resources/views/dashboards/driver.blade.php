@@ -27,11 +27,9 @@
                 @foreach($drivers as $driver)
                 @if($driver->user_id == Auth::user()->id)
 
-                <a href="driver/updateStatus/{{$driver->status}}" class="bg-green-500 text-white capitalize px-4 py-2 rounded-lg hover:bg-green-600 transition">  
+                <a href="driver/updateStatus" class="bg-green-500 text-white capitalize px-4 py-2 rounded-lg hover:bg-green-600 transition">  
                     {{ $driver->status}}
                 </a>
-
-                <p>{{ $driver->user_id }}</p>
 
                 @endif
                 @endforeach

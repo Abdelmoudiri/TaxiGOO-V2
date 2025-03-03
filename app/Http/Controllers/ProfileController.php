@@ -9,59 +9,64 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    
-    public function index(){
+
+    public function index()
+    {
         $user = User::find(Auth::user()->id);
-        
+
         $driver = null;
 
-        if($user->account_type == "driver"){
-            $driver = Driver::find(Auth::user()->id);
+        if ($user->account_type == "driver") {
+            $driver = Driver::where('user_id', '=', Auth::user()->id)->first();
         }
-        
-        return view('profile.index',['user'=>$user,'driver'=>$driver]);
+
+        return view('profile.index', ['user' => $user, 'driver' => $driver]);
+
+
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         // dd($request);
         $validated = $request->validate([
-                'firstname'=>['required','string'],
-                'lastname'=>['required','string'],
-                'email'=>['required','email'],
-                'phone'=>'required'
-            ]);
+            'firstname' => ['required', 'string'],
+            'lastname' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'phone' => 'required'
+        ]);
 
-        $userUpdate = 
+        $userUpdate =
             [
-                'firstname'=>$validated['firstname'],
-                'lastname'=>$validated['lastname'],
-                'email'=>$validated['email'],
-                'phone'=>$validated['phone']
+                'firstname' => $validated['firstname'],
+                'lastname' => $validated['lastname'],
+                'email' => $validated['email'],
+                'phone' => $validated['phone']
             ]
-            ;
+        ;
 
         $user = User::find(Auth::user()->id);
         $driver = null;
-        if(Auth::user()->account_type == 'driver'){
-            $driverAttributes['city'] = $request->validate(['city'=>'required']);
-            $driver = Driver::where('user_id' ,'=', $user->id)->get();
+        if (Auth::user()->account_type == 'driver') {
+            $driverAttributes['city'] = $request->validate(['city' => 'required']);
+            $driver = Driver::where('user_id', '=', $user->id)->first();
         }
 
         $user->update($userUpdate);
-        if($driver){
+        if ($driver) {
             $driver->update($driverAttributes['city']);
         }
 
         return redirect('/profile');
     }
 
-    public function updatePhoto(Request $request){
+    public function updatePhoto(Request $request)
+    {
         $path['photo'] = [];
-        if($request->hasfile('updated-photo')){
-            $path['photo'] = $request->file('updated-photo')->store('photos','public');
+        if ($request->hasfile('updated-photo')) {
+            $path['photo'] = $request->file('updated-photo')->store('photos', 'public');
         }
 
-        if($path['photo']){
+        if ($path['photo']) {
             $user = User::find(Auth::user()->id);
             $user->update($path);
         }

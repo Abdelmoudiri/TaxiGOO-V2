@@ -20,13 +20,13 @@ class DriverController extends Controller
         return view('dashboards.driver');
     }
 
-    public function updateStatus($status){
-        // dd($status);
-        $driver = Driver::find(Auth::user()->id);
-        if($status === "disponible"){
+    public function updateStatus(){
+       
+        $driver = Driver::where('user_id','=',Auth::user()->id)->first();
+        if($driver->status === "disponible"){
             $driver->update(['status'=>'not disponible']);
         }
-        else if($status === "not disponible") {
+        else if($driver->status === "not disponible") {
             $driver->update(['status'=>'disponible']);
         }
        

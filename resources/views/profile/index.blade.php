@@ -24,7 +24,9 @@
             <div class="md:col-span-1">
                 <div class="bg-white shadow rounded-lg p-6">
                     <div class="text-center">
+                        {{-- <img class="h-32 w-32 rounded-full mx-auto" src="{{ asset('storage/app/public/'.$user->photo) }}" alt="Photo de profil"> --}}
                         <img class="h-32 w-32 rounded-full mx-auto" src="{{ asset('storage/'.$user->photo) }}" alt="Photo de profil">
+
                         <!-- <div class="mt-4">
                             <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition text-sm">
                                 Changer la photo
@@ -86,9 +88,10 @@
                                 </div>
 
                                 @if(Auth::user()->account_type == 'driver')
+                                
                                 <div class="col-span-6">
                                     <label for="city" class="block text-sm font-medium text-gray-700">Ville</label>
-                                    <input type="text" name="city" id="city" value="{{ $driver->city }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
+                                    <input type="text" name="city" id="city" value="{{$driver->city}}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
                                 </div>
                                 @endif
                             </div>
@@ -102,37 +105,10 @@
                     </div>
                 </div>
 
-                <!-- Security Settings -->
-                <div class="bg-white shadow rounded-lg mt-6">
-                    <div class="px-4 py-5 sm:p-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-6">Sécurité</h3>
-                        <form>
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="current-password" class="block text-sm font-medium text-gray-700">Mot de passe actuel</label>
-                                    <input type="password" name="current-password" id="current-password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
-                                </div>
-
-                                <div>
-                                    <label for="new-password" class="block text-sm font-medium text-gray-700">Nouveau mot de passe</label>
-                                    <input type="password" name="new-password" id="new-password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
-                                </div>
-
-                                <div>
-                                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirmer le nouveau mot de passe</label>
-                                    <input type="password" name="confirm-password" id="confirm-password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm">
-                                </div>
-                            </div>
-                            <div class="mt-6">
-                                <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
-                                    Changer le mot de passe
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            
             </div>
         </div>
     </div>
+    
 </body>
 </html>

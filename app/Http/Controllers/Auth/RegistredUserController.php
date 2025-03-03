@@ -17,7 +17,7 @@ class RegistredUserController extends Controller
     }
 
     public function store(Request $request){
-
+        
         $attributes = $request->validate(
             [
                 'firstname'=>['required','string'],
@@ -29,6 +29,8 @@ class RegistredUserController extends Controller
                 'account_type'=>'required'
 
             ]);
+
+            
             $path = null;
         if($request->hasFile('photo')){
             $path = $request->file('photo')->store('photos','public');
@@ -44,6 +46,8 @@ class RegistredUserController extends Controller
             'account_type'=>$attributes['account_type']
 
         ]);
+
+    
 
         if($attributes['account_type'] == "driver"){
             $driverAttributes = $request->validate(
@@ -62,7 +66,8 @@ class RegistredUserController extends Controller
         }
 
         Auth::login($user);
-            
+        
+        
         return redirect('/reservations');
        
         
