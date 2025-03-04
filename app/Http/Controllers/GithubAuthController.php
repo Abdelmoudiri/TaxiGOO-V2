@@ -10,31 +10,31 @@ use Illuminate\Support\Str;
 use Request;
 use Throwable;
 
-class GoogleAuthController extends Controller
+class GithubAuthController extends Controller
 {
     /**
-     * Redirect the user to Google’s OAuth page.
+     * Redirect the user to github’s OAuth page.
      */
     public function redirect()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('github')->redirect();
     }
 
     /**
-     * Handle the callback from Google.
+     * Handle the callback from github.
      */
     public function callback(Request $request)
 {
-   $google_user = Socialite::driver('google')->user();
+   $github_user = Socialite::driver('github')->user();
    $user=User::updateOrCreate(
-    ['google_id'=> $google_user->id],
+    ['google_id'=> $github_user->id],
     [
 
-        'name' => $google_user->name,
-            'email' => $google_user->email,
+        'name' => $github_user->name,
+            'email' => $github_user->email,
             'password' => Str::random(12), 
-            'firstname' => $google_user->user['given_name'], 
-            'lastname' => $google_user->user['family_name'],
+            'firstname' => $github_user->user['given_name'], 
+            'lastname' => $github_user->user['family_name'],
     ]
     );
     Auth::login($user);

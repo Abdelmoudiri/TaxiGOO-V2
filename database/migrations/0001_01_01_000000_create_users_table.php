@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->enum('account_type',['driver','passenger'])->nullable();
             $table->string('google_id')->nullable();
+            $table->string('github_id')->nullable();
             $table->string('password');
             $table->timestamps();
         });

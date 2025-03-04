@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\RegistredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\GithubAuthController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
@@ -19,28 +21,12 @@ Route::get('/admin',function()
 });
 
 // google
-Route::get('/auth/google/redirect',function(Request $request)
-{
-    return Socialite::driver('google')->redirect();
-});
+Route::get('/auth/google/redirect',[GoogleAuthController::class,'redirect']);
+Route::get('/auth/google/callback',[GoogleAuthController::class,'callback']);
+// github
+Route::get('/auth/google/redirect',[GithubAuthController::class,'redirect']);
+Route::get('/auth/google/callback',[GithubAuthController::class,'callback']);
 
-Route::get('/auth/google/callback',function(Request $request)
-{
-   $google_user = Socialite::driver('google')->user();
-   $user=User::updateOrCreate(
-    ['google_id'=> $google_user->id],
-    [
-
-        'name' => $google_user->name,
-            'email' => $google_user->email,
-            'password' => Str::random(12), 
-            'firstname' => $google_user->user['given_name'], 
-            'lastname' => $google_user->user['family_name'],
-    ]
-    );
-    Auth::login($user);
-    return redirect('/profile');
-});
 
 
 
