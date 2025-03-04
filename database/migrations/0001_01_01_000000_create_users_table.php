@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();
-            $table->string('phone');
-            $table->string('photo');
-            $table->enum('account_type',['driver','passenger']);
+            $table->string('phone')->nullable();
+            $table->string('photo')->nullable();
+            $table->enum('account_type',['driver','passenger'])->nullable();
+            $table->string('google_id')->nullable();
             $table->string('password');
             $table->timestamps();
         });

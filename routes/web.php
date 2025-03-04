@@ -6,6 +6,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -22,10 +23,28 @@ Route::get('/auth/google/redirect',function(Request $request)
 {
     return Socialite::driver('google')->redirect();
 });
+
 Route::get('/auth/google/callback',function(Request $request)
 {
-   dd(Socialite::driver('google')->user());
+   $google_user = Socialite::driver('google')->user();
+   $user=User::updateOrCreate(
+    ['google_id'=> $google_user->id],
+    [
+
+        'name' => $google_user->name,
+            'email' => $google_user->email,
+            'password' => Str::random(12), 
+            'firstname' => $google_user->user['given_name'], 
+            'lastname' => $google_user->user['family_name'],
+    ]
+    );
+    Auth::login($user);
+    return redirect('/profile');
 });
+
+
+
+
 
 Route::middleware(['auth'])->group(function(){
 
